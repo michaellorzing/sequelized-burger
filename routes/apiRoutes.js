@@ -24,7 +24,7 @@ module.exports = (app) => {
   });
 
   app.get("/api/burgers/:id", function(req, res) {
-    db.Burger.findOne({
+    db.Burger.findAll({
       where: {
         id: req.params.id
       }
@@ -38,9 +38,11 @@ module.exports = (app) => {
   });
 
   app.put("/api/burgers/:id", function(req, res) {
-    db.Burger.update({
+    console.log(req.body.devoured)
+    db.Burger.update({ devoured: req.body.devoured },
+    {
       where: {
-        id: req.body.id
+        id: req.params.id
       }
     })
       .then(dbBurgerData => res.json(dbBurgerData))

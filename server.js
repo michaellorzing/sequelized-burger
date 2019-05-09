@@ -1,5 +1,6 @@
 const express = require("express");
 const db = require("./models");
+const exphbs = require("express-handlebars");
 
 const PORT = process.env.PORT || 3000;
 
@@ -9,6 +10,9 @@ app.use(express.static("public"));
 
 app.use(express.urlencoded({ extended: true}));
 
+app.engine("handlebars", exphbs({ defaultLayout: "main"}));
+
+app.set ("view engine", "handlebars");
 
 require("./routes/htmlRoutes")(app);
 require("./routes/apiRoutes")(app);
