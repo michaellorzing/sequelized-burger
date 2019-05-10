@@ -20,7 +20,13 @@ $(document).ready(function(){
   $(".update-burger").on("click", function(event){
     event.preventDefault()
     const burgerId = $(this).attr("data-id");
-    const devoured = $(this).attr("data-devoured")
+    let devoured = $(this).attr("data-devoured");
+
+    if (devoured === "true") {
+      devoured = "false";
+    } else {
+      devoured = "true"
+    }
 
     $.ajax({
       url: `/api/burgers/${burgerId}`,

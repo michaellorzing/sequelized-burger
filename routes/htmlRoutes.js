@@ -4,7 +4,7 @@ const db = require("../models");
 
 module.exports = (app) => {
   app.get("/", function (req, res) {
-    db.Burger.findAll({})
+    db.Burger.findAll()
       .then(dbBurgerData => {
         res.render("index", {
           burgerData: dbBurgerData
